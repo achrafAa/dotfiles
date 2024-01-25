@@ -35,8 +35,8 @@ Polybar
 Fzf
 Tmux
 
-Customization
+## Customization
 Feel free to customize the roles or add additional roles based on your preferences. Each role is modular, allowing you to tailor the configuration to your needs.
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
