@@ -24,10 +24,14 @@
         condition : install_neovim | default(true) 
       - name: tmux
         condition : install_tmux | default(true)     
+      - name: polybar
+        condition : install_polybar | default(true)
+      - name: alacritty
+        condition : install_alacritty| default(true)
+      - name: i3
+        condition : i3| default(true)
       - name: ohmyzsh
         condition : install_ohmyzsh | default(true)
-
-
 
   tasks:
     - name: Load configuration

@@ -1,0 +1,19 @@
+---
+# Install polybar
+- name: Install polybar
+  apt:
+    name: polybar
+    state: present
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install polybar (Arch)
+  pacman:
+    name: polybar
+    state: present
+  when: ansible_facts['os_family'] == 'Archlinux'
+
+# Configuration
+- name: Copy polybar configuration files
+  synchronize:
+    src:  "{{ role_path }}/dotfiles/"
+    dest: "~/.config/"

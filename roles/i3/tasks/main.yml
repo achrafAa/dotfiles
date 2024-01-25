@@ -1,0 +1,6 @@
+# Configuration
+- name: Copy i3 configuration files
+  synchronize:
+    src:  "{{ role_path }}/dotfiles/"
+    dest: "~/.config/i3/"
+  
