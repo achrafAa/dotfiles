@@ -6,6 +6,7 @@
   
   vars:
     username : achraf #change this to your username 
+    nerdfont: Hack
     roles_to_include:
       - name: rsync
         condition: install_rsync | default(true)
@@ -13,6 +14,9 @@
         condition: install_zsh | default(true)
       - name: ohmyzsh
         condition : install_ohmyzsh | default(true)
+      - name: nerdfont
+        condition : install_nerdfont | default(true)
+
 
   tasks:
     - name: Load configuration
