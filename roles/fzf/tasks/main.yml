@@ -1,0 +1,4 @@
+---
+- name: Install fzf
+  command: "/home/linuxbrew/.linuxbrew/bin/brew install fzf"
+  become_user: "{{ username }}"

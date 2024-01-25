@@ -12,10 +12,21 @@
         condition: install_rsync | default(true)
       - name: zsh
         condition: install_zsh | default(true)
-      - name: ohmyzsh
-        condition : install_ohmyzsh | default(true)
       - name: nerdfont
         condition : install_nerdfont | default(true)
+      - name: brew
+        condition : install_brew | default(true)
+      - name: eza
+        condition : install_eza | default(true)  
+      - name: fzf
+        condition : install_fzf | default(true)  
+      - name: neovim
+        condition : install_neovim | default(true) 
+      - name: tmux
+        condition : install_tmux | default(true)     
+      - name: ohmyzsh
+        condition : install_ohmyzsh | default(true)
+
 
 
   tasks:

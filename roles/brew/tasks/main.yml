@@ -1,0 +1,5 @@
+---
+- name: Install Linuxbrew
+  script:
+      cmd: /usr/bin/curl -fsSL  https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | /bin/bash
+  become_user: "{{ username }}"

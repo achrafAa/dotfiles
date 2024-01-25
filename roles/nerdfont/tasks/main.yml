@@ -1,13 +1,21 @@
 ---
+- name: Check if Nerd Font files exist
+  stat:
+    path: "/usr/share/fonts/truetype/{{ nerdfont }} Regular Nerd Font Complete.ttf"
+  register: nerd_font_files_exist
+
 - name: Download Nerd Font ZIP file
   get_url:
-    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{nerdfont}}.zip"
-    dest: "/home/{{username}}/dotfiles/temp/{{nerdfont}}.zip"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/{{ nerdfont }}.zip"
+    dest: "/home/{{ username }}/dotfiles/temp/{{ nerdfont }}.zip"
+  when: nerd_font_files_exist.stat.exists == false
 
 - name: Unzip Nerd Font
-  command: "unzip /home/{{username}}/dotfiles/temp/{{nerdfont}}.zip -d /usr/share/fonts/truetype/"
+  command: "unzip -o /home/{{ username }}/dotfiles/temp/{{ nerdfont }}.zip -d /usr/share/fonts/truetype/"
   become: true
+  when: nerd_font_files_exist.stat.exists == false
 
 - name: Update font cache
   command: fc-cache -fv
   become: true
+  when: nerd_font_files_exist.stat.exists == false

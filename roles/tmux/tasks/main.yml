@@ -1,0 +1,4 @@
+---
+- name: Install tmux
+  command: "/home/linuxbrew/.linuxbrew/bin/brew install tmux"
+  become_user: "{{ username }}"

@@ -1,0 +1,4 @@
+---
+- name: Install eza
+  command: "/home/linuxbrew/.linuxbrew/bin/brew install eza"
+  become_user: "{{ username }}"
