@@ -1,0 +1,18 @@
+---
+  
+# Install 
+- name: Check if Oh My Zsh is already installed
+  command: /usr/bin/test -d "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: ohmyzsh_installed
+  changed_when: false
+
+- name: Download and run Oh My Zsh install script
+  script:
+    cmd: /usr/bin/curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+  when: ohmyzsh_installed.rc != 0
+
+# Configuration
+- name: Copy ohmyzsh configuration files
+  synchronize:
+    src:  "{{ role_path }}/dotfiles/"
+    dest: "~/"

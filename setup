@@ -10,7 +10,7 @@ red=$(tput setaf 1)
 run_configuration() {
     local dist_name=$1
     echo "${bold}${green}Running $dist_name configuration ...${normal}"
-    # calling ansible 
+    ansible-playbook -i localhost, -c local playbook.yml --ask-become-pass -v
 }
 
 handle_unknown_dist() {

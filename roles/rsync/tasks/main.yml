@@ -1,0 +1,12 @@
+---
+- name: Install rsync
+  apt:
+    name: rsync
+    state: present
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install rsync (Arch)
+  pacman:
+    name: rsync
+    state: present
+  when: ansible_facts['os_family'] == 'Archlinux'

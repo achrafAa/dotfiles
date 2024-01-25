@@ -1,0 +1,14 @@
+---
+  
+# Install 
+- name: Install Zsh
+  apt:
+    name: zsh
+    state: present
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install Zsh (Arch)
+  pacman:
+    name: zsh
+    state: present
+  when: ansible_facts['os_family'] == 'Archlinux'

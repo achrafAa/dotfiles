@@ -5,11 +5,14 @@
   gather_facts: true
   
   vars:
+    username : achraf #change this to your username 
     roles_to_include:
       - name: rsync
         condition: install_rsync | default(true)
       - name: zsh
         condition: install_zsh | default(true)
+      - name: ohmyzsh
+        condition : install_ohmyzsh | default(true)
 
   tasks:
     - name: Load configuration
@@ -21,3 +24,4 @@
         name: "{{ item.name }}"
       when: item.condition
       with_items: "{{ roles_to_include }}"
+
