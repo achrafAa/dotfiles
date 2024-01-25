@@ -7,10 +7,12 @@ normal=$(tput sgr0)
 green=$(tput setaf 2)
 red=$(tput setaf 1)
 
+mkdir -p temp
+
 run_configuration() {
     local dist_name=$1
     echo "${bold}${green}Running $dist_name configuration ...${normal}"
-    ansible-playbook -i localhost, -c local playbook.yml -K -v
+    ansible-playbook -i localhost, -c local playbook.yml -K
 }
 
 handle_unknown_dist() {

@@ -2,3 +2,9 @@
 - name: Install neovim
   command: "/home/linuxbrew/.linuxbrew/bin/brew install neovim"
   become_user: "{{ username }}"
+
+# Configuration
+- name: Copy neovim configuration files
+  synchronize:
+    src:  "{{ role_path }}/dotfiles/"
+    dest: "~/"
