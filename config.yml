@@ -1,0 +1,2 @@
+install_rsync: true # this is required to sync your dotfiles 
+install_zsh: true

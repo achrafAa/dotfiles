@@ -1,0 +1,23 @@
+---
+- name: Install & Configure your Machine
+  hosts: localhost
+  become: true
+  gather_facts: true
+  
+  vars:
+    roles_to_include:
+      - name: rsync
+        condition: install_rsync | default(true)
+      - name: zsh
+        condition: install_zsh | default(true)
+
+  tasks:
+    - name: Load configuration
+      include_vars:
+        file: config.yml
+
+    - name: Include roles
+      include_role:
+        name: "{{ item.name }}"
+      when: item.condition
+      with_items: "{{ roles_to_include }}"

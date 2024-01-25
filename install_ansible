@@ -1,0 +1,44 @@
+#!/bin/bash
+set -e
+
+# Define text formatting variables
+bold=$(tput bold)
+normal=$(tput sgr0)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+
+# Check if OS name parameter is provided
+if [ -z "$1" ]; then
+    echo "Please provide the os name"
+    echo "Usage: $0 <os_name>"
+    exit 1
+fi
+
+# Get the OS name from the command-line argument
+os_name="$1"
+
+# Function to run the installation script based on OS name
+run_installation_script() {
+    case "$os_name" in
+        "arch-linux")
+            sudo pacman -S ansible
+            ;;
+        "ubuntu")
+            sudo apt install ansible
+            ;;
+        *)
+            echo "${bold}${red}Unsupported or no OS specified${normal}"
+            exit 1
+            ;;
+    esac
+    if [ -x "$(command -v ansible)" ]; then
+        echo "${bold}${green}Ansible installed!${normal}"
+    else 
+        echo "${bold}${red}Error installing Ansible! please install manually and rerun${normal}"
+        exit 1
+    fi
+}
+
+# Call the function to run the installation script
+run_installation_script "$os_name"
+

@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e
+
+# Define text formatting variables
+bold=$(tput bold)
+normal=$(tput sgr0)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+
+run_configuration() {
+    local dist_name=$1
+    echo "${bold}${green}Running $dist_name configuration ...${normal}"
+    # calling ansible 
+}
+
+handle_unknown_dist() {
+    local dist_name=$1
+    echo "${bold}${red}Dist $dist_name is not configured yet${normal}"
+}
+
+install_ansible(){
+    local dist_name=$1
+    echo "${bold}${green}installing Ansible ...${normal}"
+    sh ./install_ansible $dist_name
+}
+
+if [ -f /etc/os-release ]; then
+    linux_dist_name=$(grep "^NAME=" /etc/os-release | awk -F'=' '{print tolower($2)}' | tr -d '"')
+    linux_dist_name=$(echo ${linux_dist_name// /-})
+    case "$linux_dist_name" in
+        "arch-linux" | "ubuntu" | "debian")
+            if ! [ -x "$(command -v ansible)" ]; then
+                install_ansible "$linux_dist_name"
+            fi
+            run_configuration "$linux_dist_name"
+            ;;
+        *)
+            handle_unknown_dist "$linux_dist_name"
+            ;;
+    esac
+elif [ "$(uname)" == "Darwin" ]; then
+    echo "${bold}${green}Running on macOS ...${normal}"
+    # Add your macOS-specific configuration here
+else
+    echo "${bold}${red}ERROR: I need the file /etc/os-release to determine what my distribution is...${normal}"
+    # If you want, you can include older or distribution-specific files here...
+    exit 1
+fi
