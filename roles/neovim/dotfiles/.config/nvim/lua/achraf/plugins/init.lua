@@ -1,16 +1,9 @@
-return {"christoomey/vim-tmux-navigator", "mbbill/undotree", "tpope/vim-fugitive", "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim", -- LSP Support
-{
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    lazy = true,
-    config = false
-},
-{
-    'neovim/nvim-lspconfig',
-    dependencies = {{'hrsh7th/cmp-nvim-lsp'}}
-}, -- Autocompletion
-{
-    'hrsh7th/nvim-cmp',
-    dependencies = {{'L3MON4D3/LuaSnip'}}
-}}
+return {
+  "nvim-lua/plenary.nvim", -- lua functions that many plugins use
+  "mbbill/undotree", 
+  
+  "tpope/vim-fugitive",
+  "christoomey/vim-tmux-navigator", -- tmux & split window navigation
+
+  "inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
+}

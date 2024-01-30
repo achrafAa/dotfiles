@@ -1,6 +1,5 @@
 ---
-  
-# Install 
+# Install
 - name: Check if Oh My Zsh is already installed
   command: /usr/bin/test -d "{{ ansible_env.HOME }}/.oh-my-zsh"
   register: ohmyzsh_installed
@@ -11,8 +10,20 @@
     cmd: /usr/bin/curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
   when: ohmyzsh_installed.rc != 0
 
+- name: Install Zsh autosuggestions plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+  become_user: "{{username}}"
+
+- name: Install Zsh syntax highlighting plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+  become_user: "{{username}}"
+
 # Configuration
 - name: Copy ohmyzsh configuration files
   synchronize:
-    src:  "{{ role_path }}/dotfiles/"
+    src: "{{ role_path }}/dotfiles/"
     dest: "~/"
