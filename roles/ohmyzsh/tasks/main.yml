@@ -1,7 +1,7 @@
 ---
 # Install
 - name: Check if Oh My Zsh is already installed
-  command: /usr/bin/test -d "{{ ansible_env.HOME }}/.oh-my-zsh"
+  command: /usr/bin/test -d "/home/{{username}}/.oh-my-zsh"
   register: ohmyzsh_installed
   changed_when: false
 
